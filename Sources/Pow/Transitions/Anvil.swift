@@ -1,4 +1,20 @@
 import SwiftUI
+import class Foundation.Bundle
+
+extension Foundation.Bundle {
+    static let module: Bundle = {
+        let mainPath = Bundle.main.bundleURL.appendingPathComponent("Pow_Pow.bundle").path
+        let buildPath = "/Users/gary/Pow/.build/arm64-apple-macosx/debug/Pow_Pow.bundle"
+
+        let preferredBundle = Bundle(path: mainPath)
+
+        guard let bundle = preferredBundle ?? Bundle(path: buildPath) else {
+            fatalError("could not load resource bundle: from \(mainPath) or \(buildPath)")
+        }
+
+        return bundle
+    }()
+}
 
 public extension AnyTransition.MovingParts {
     /// A transition that drops the view down from the top.
@@ -45,8 +61,8 @@ internal struct Anvil: ViewModifier, Animatable, AnimatableModifier {
 
         let padding = EdgeInsets(top: 150, leading: 130, bottom: 100, trailing: 130)
 
-        let grayImage: Image = Image("anvil_smoke_gray", bundle: .main)
-        let whiteImage: Image = Image("anvil_smoke_white", bundle: .main)
+        let grayImage: Image = Image("anvil_smoke_gray", bundle: .module)
+        let whiteImage: Image = Image("anvil_smoke_white", bundle: .module)
 
         content
             #if os(iOS)
