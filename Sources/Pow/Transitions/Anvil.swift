@@ -45,8 +45,8 @@ internal struct Anvil: ViewModifier, Animatable, AnimatableModifier {
 
         let padding = EdgeInsets(top: 150, leading: 130, bottom: 100, trailing: 130)
 
-        let grayImage: Image = Image("anvil_smoke_gray", bundle: .module)
-        let whiteImage: Image = Image("anvil_smoke_white", bundle: .module)
+        let grayImage: Image = Image("anvil_smoke_gray", bundle: .main)
+        let whiteImage: Image = Image("anvil_smoke_white", bundle: .main)
 
         content
             #if os(iOS)

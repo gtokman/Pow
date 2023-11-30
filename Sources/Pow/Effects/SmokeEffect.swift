@@ -55,9 +55,9 @@ private struct SmokeEffect: ViewModifier, Continuous {
             ZStack {
                 ForEach(Array(particles.enumerated()), id: \.element) { (offset, particle) in
                     #if os(iOS)
-                    let image = UIImage(named: particle, in: .module, with: nil)!.cgImage!
+                    let image = UIImage(named: particle, in: .main, with: nil)!.cgImage!
                     #elseif os(macOS)
-                    let image = Bundle.module.image(forResource: particle)!.cgImage(forProposedRect: nil, context: nil, hints: nil)!
+                    let image = Bundle.main.image(forResource: particle)!.cgImage(forProposedRect: nil, context: nil, hints: nil)!
                     #endif
 
                     SmokeLayerView(size: proxy.size, isActive: isActive, particle: image, seed: UInt32(offset))
@@ -296,7 +296,7 @@ struct ContinuousParticleEffect_Previews: PreviewProvider {
         var body: some View {
             VStack {
                 GeometryReader { proxy in
-                    SmokeLayerView(size: proxy.size, isActive: isEnabled, particle: UIImage(named: "anvil_smoke_gray", in: .module, with: nil)!.cgImage!, seed: 0)
+                    SmokeLayerView(size: proxy.size, isActive: isEnabled, particle: UIImage(named: "anvil_smoke_gray", in: .main, with: nil)!.cgImage!, seed: 0)
                 }
                 .frame(width: 200, height: 100)
                 .border(.red)

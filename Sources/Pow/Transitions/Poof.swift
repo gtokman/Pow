@@ -48,7 +48,7 @@ private struct Poof: ViewModifier, Animatable, AnimatableModifier {
     }
 
     func poof(_ name: String) -> some View {
-        Image(name, bundle: .module)
+        Image(name, bundle: .main)
             .resizable()
             .aspectRatio(contentMode: .fit)
             .frame(width: 88, height: 88)
